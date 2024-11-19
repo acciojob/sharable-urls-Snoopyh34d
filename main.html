@@ -1,8 +1,42 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic URL</title>
+</head>
+<body>
+    <form id="form">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" placeholder="Name">
+        <br>
+        <label for="year">Graduation Year:</label>
+        <input type="number" name="year" id="year" placeholder="Year">
+        <br>
+        <button type="button" id="button">Submit</button>
+    </form>
+    <h3 id="url">https://localhost:8080/</h3>
 
+    <script>
+        const button = document.getElementById('button');
+        const urlElement = document.getElementById('url');
+        const form = document.getElementById('form');
+
+        button.addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const year = document.getElementById('year').value.trim();
+
+            let queryString = 'https://localhost:8080/';
+            if (name && year) {
+                queryString += `?name=${name}&year=${year}`;
+            } else if (name) {
+                queryString += `?name=${name}`;
+            } else if (year) {
+                queryString += `?year=${year}`;
+            }
+
+            urlElement.textContent = queryString;
+        });
+    </script>
+</body>
 </html>
